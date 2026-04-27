@@ -1,5 +1,5 @@
 # Applied AI System: PawPal+ AI
-**Loom Video Demo:** [[text](https://www.loom.com/share/b0759cf61fe94d46a049ad94ff28960e)]
+**Loom Video Demo:** [[Loom Video](https://www.loom.com/share/b0759cf61fe94d46a049ad94ff28960e)]
 
 ## 1. Base Project & Original Scope
 **Base Project:** PawPal+ (Module 2)
