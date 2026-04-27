@@ -1,19 +1,14 @@
----
+# Project Reflection: Building PawPal+ AI
 
-### 4. `reflection.md`
-Replace everything in your `reflection.md` with this:
+## 1. Working with AI
+I used AI to help me bridge the gap between my original Module 2 Python code and this new Streamlit version. It was especially helpful for figuring out `st.session_state` so my pet data wouldn't disappear every time the page refreshed. 
 
-```markdown
-# System Reflection & AI Collaboration
+However, I ran into a major roadblock when the AI suggested using an older Groq model (`llama3-8b-8192`). I kept getting "model decommissioned" errors (400) because that model was no longer supported. I had to manually check the Groq documentation to find the correct model name, `llama-3.1-8b-instant`. This was a good reminder that AI suggestions can quickly become outdated, and I have to be ready to debug the API documentation myself. Gemini and OpenAI constantly didn't work.
 
-## 1. AI Collaboration & Development
-During this project, I collaborated extensively with AI to evolve a standard Python script into a full Applied AI System.
-*   **Helpful Suggestion:** The AI was highly effective in helping me structure the Streamlit UI and convert my standard Python logic into a stateful web app using `st.session_state`.
-*   **Flawed Suggestion:** When setting up the AI API connections, the AI initially suggested a deprecated Groq model (`llama3-8b-8192`) which caused a 400 error. I had to debug the API documentation to find the updated `llama-3.1-8b-instant` model to restore functionality.
+## 2. System Guardrails & Limits
+The biggest limitation right now is the knowledge base. Since it's just a static text block, the AI only knows the specific safety rules I've typed in. If a user asks about a rare pet or a specific medical condition not in that list, the AI might give a generic answer instead of a specialized one. 
 
-## 2. System Limitations & Guardrails
-*   **Limitations:** The current RAG system relies on a static text block (`PET_KNOWLEDGE`). If a user asks about a safety issue not in that exact text block, the AI cannot dynamically search the internet for a safe answer.
-*   **Guardrails:** I implemented strict backend guardrails for time scheduling to ensure overlapping tasks trigger a red UI warning to the user.
+To make the system more reliable, I added a "soft guardrail" in the scheduling logic. Instead of just letting the user make a mistake, my code checks if two tasks share a time slot and triggers a red conflict warning. I wanted to make sure the app wasn't just a chatbot, but a tool that actually helps catch human errors.
 
-## 3. Future Improvements
-If I were to extend this further, I would implement **Multi-Source Retrieval**. Instead of a single text block, the system would use a vector database to search through full veterinary PDFs, allowing for much more nuanced and detailed health advice.
+## 3. What's Next?
+If I were to keep building this, I’d move away from a static text block and use a real vector database. This would allow me to upload entire PDF manuals for different animals, which would make the "Retrieval" part of the RAG system much more powerful. I'd also like to add a feature where the AI can automatically suggest a time for a task based on the pet's specific needs.
